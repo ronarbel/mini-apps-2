@@ -24,7 +24,7 @@ class App extends React.Component {
     axios.get(`/events?q=${searchText}&_page=${currentPage}&_limit=${10}`)
       .then((events) => {
         const totalCount = events.headers['x-total-count'];
-        const pageCount = totalCount / 10;
+        const pageCount = Math.ceil(totalCount / 10);
         this.setState({ events: events.data, pageCount });
       })
       .catch((err) => { console.log(err); });
@@ -33,13 +33,12 @@ class App extends React.Component {
   handleSubmit(searchText) {
     return (event) => {
       event.preventDefault();
-      this.setState({ searchText });
-      this.getEvents();
+      this.setState({ searchText, currentPage: 1 }, this.getEvents);
     };
   }
 
   handlePageClick(page) {
-    this.setState({ currentPage: page.selected });
+    this.setState({ currentPage: page.selected + 1 });
     this.getEvents();
   }
 
