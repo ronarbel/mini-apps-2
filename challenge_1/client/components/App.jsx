@@ -1,19 +1,20 @@
 import React from 'react';
 import axios from 'axios';
+import ReactPaginate from 'react-paginate';
 import SearchBar from './SearchBar.jsx';
 import EventList from './EventList.jsx';
-import ReactPaginate from 'react-paginate';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       events: [],
-      pageCount: 0,
+      pageCount: 1,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.getEvents = this.getEvents.bind(this);
+    this.handlePageClick = this.handlePageClick.bind(this);
   }
 
   getEvents(text) {
@@ -33,6 +34,9 @@ class App extends React.Component {
     };
   }
 
+  handlePageClick(pageNumber) {
+    console.log(pageNumber.selected);
+  }
 
   render() {
     const { events, pageCount } = this.state;
