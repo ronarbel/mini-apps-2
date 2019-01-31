@@ -11,7 +11,7 @@ app.use(morgan('short'));
 // -------- crud -------- //
 app.get('/prices', (req, res) => {
   const CURRENCY = 'bpi';
-  
+
   axios.get('https://api.coindesk.com/v1/bpi/historical/close.json')
     .then(response => res.send(response.data[CURRENCY]))
     .catch(err => res.status(500).send(err));

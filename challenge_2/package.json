@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "chart.js": "^2.7.3",
     "express": "^4.16.4",
     "morgan": "^1.9.1",
     "react": "^16.7.0",

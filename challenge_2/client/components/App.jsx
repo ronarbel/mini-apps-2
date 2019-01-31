@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ChartDisplay from './ChartDisplay.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,8 +17,12 @@ class App extends React.Component {
   }
 
   render() {
+    const { prices } = this.state;
+
     return (
-      <div>rendering from app</div>
+      <div>
+        <ChartDisplay prices={prices} />
+      </div>
     );
   }
 }
