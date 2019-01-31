@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import SearchBar from './SearchBar.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -7,6 +8,8 @@ class App extends React.Component {
     this.state = {
       data: []
     };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -14,14 +17,23 @@ class App extends React.Component {
       .then((events) => {
         console.log(events);
       })
-      .catch((err) =>{
+      .catch((err) => {
         console.log(err);
       });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('+++ Searching: ');
+    console.log();
+  }
+
   render() {
     return (
-      <h2>hello world 2</h2>
+      <div>
+        <h2>hello world 2</h2>
+        <SearchBar handleSubmit={this.handleSubmit} />
+      </div>
     );
   }
 }
