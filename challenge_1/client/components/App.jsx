@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import SearchBar from './SearchBar.jsx';
+import EventList from './EventList.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: []
+      events: [],
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,14 +15,12 @@ class App extends React.Component {
   }
 
   getEvents(text) {
-    axios.get('/events')
+    axios.get(`/events?q=${text}`)
       .then((events) => {
-        console.log(events);
-        this.setState({ events });
+        console.log(events.data);
+        this.setState({ events: events.data });
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => { console.log(err); });
   }
 
   handleSubmit(text) {
@@ -32,10 +31,11 @@ class App extends React.Component {
   }
 
   render() {
+    const { events } = this.state;
     return (
       <div>
-        <h2>hello world 2</h2>
         <SearchBar handleSubmit={this.handleSubmit} />
+        <EventList events={events} />
       </div>
     );
   }
