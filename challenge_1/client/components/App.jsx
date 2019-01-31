@@ -6,16 +6,18 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      events: []
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getEvents = this.getEvents.bind(this);
   }
 
-  componentDidMount() {
+  getEvents(text) {
     axios.get('/events')
       .then((events) => {
         console.log(events);
+        this.setState({ events });
       })
       .catch((err) => {
         console.log(err);
@@ -25,7 +27,7 @@ class App extends React.Component {
   handleSubmit(text) {
     return (event) => {
       event.preventDefault();
-      console.log(text);
+      this.getEvents(text);
     };
   }
 
