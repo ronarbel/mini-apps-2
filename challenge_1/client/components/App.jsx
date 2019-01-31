@@ -21,11 +21,12 @@ class App extends React.Component {
 
   getEvents() {
     const { searchText, currentPage } = this.state;
+
     axios.get(`/events?q=${searchText}&_page=${currentPage}&_limit=${10}`)
-      .then((events) => {
-        const totalCount = events.headers['x-total-count'];
+      .then((res) => {
+        const totalCount = res.headers['x-total-count'];
         const pageCount = Math.ceil(totalCount / 10);
-        this.setState({ events: events.data, pageCount });
+        this.setState({ events: res.data, pageCount });
       })
       .catch((err) => { console.log(err); });
   }
