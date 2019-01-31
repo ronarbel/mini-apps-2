@@ -7,9 +7,9 @@ const EventList = ({ events }) => {
   });
 
   return (
-    <div className="event-list">
+    <ul className="event-list">
       {eventList}
-    </div>
+    </ul>
   );
 };
 

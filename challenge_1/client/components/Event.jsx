@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Event = ({ event }) => (
-  <div className="event">
+  <li className="event">
     {event.date}
     {event.description}
-  </div>
+  </li>
 );
 
 export default Event;
