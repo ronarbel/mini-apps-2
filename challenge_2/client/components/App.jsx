@@ -6,22 +6,22 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      prices: {},
+      priceData: {},
     };
   }
 
   componentDidMount() {
     axios.get('/prices')
-      .then(res => this.setState({ prices: res.data }))
+      .then(res => this.setState({ priceData: res.data }))
       .catch(console.log);
   }
 
   render() {
-    const { prices } = this.state;
+    const { priceData } = this.state;
 
     return (
       <div>
-        <ChartDisplay prices={prices} />
+        <ChartDisplay priceData={priceData} />
       </div>
     );
   }
