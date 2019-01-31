@@ -9,7 +9,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       events: [],
-      pageCount: 1,
+      searchText: '',
+      currentPage: 1,
+      pageCount: 0,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -17,8 +19,9 @@ class App extends React.Component {
     this.handlePageClick = this.handlePageClick.bind(this);
   }
 
-  getEvents(text) {
-    axios.get(`/events?q=${text}&_limit=${10}`)
+  getEvents() {
+    const { searchText, currentPage } = this.state;
+    axios.get(`/events?q=${searchText}&_page=${currentPage}&_limit=${10}`)
       .then((events) => {
         const totalCount = events.headers['x-total-count'];
         const pageCount = totalCount / 10;
@@ -27,15 +30,17 @@ class App extends React.Component {
       .catch((err) => { console.log(err); });
   }
 
-  handleSubmit(text) {
+  handleSubmit(searchText) {
     return (event) => {
       event.preventDefault();
-      this.getEvents(text);
+      this.setState({ searchText });
+      this.getEvents();
     };
   }
 
-  handlePageClick(pageNumber) {
-    console.log(pageNumber.selected);
+  handlePageClick(page) {
+    this.setState({ currentPage: page.selected });
+    this.getEvents();
   }
 
   render() {
