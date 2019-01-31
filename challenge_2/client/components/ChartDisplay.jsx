@@ -4,14 +4,13 @@ import { Line } from 'react-chartjs-2';
 
 const ChartDisplay = ({ priceData }) => {
   const labels = Object.keys(priceData).sort();
-  const prices = [];
-  labels.forEach(label => prices.push(priceData[label]));
+  const prices = labels.map(label => priceData[label]);
 
   const data = {
     labels,
     datasets: [
       {
-        label: 'Crypto Prices',
+        label: 'BPI Prices',
         data: prices,
         fill: false,
         lineTension: 0.1,
@@ -36,7 +35,6 @@ const ChartDisplay = ({ priceData }) => {
 
   return (
     <div id="chart">
-      <div>Chart Here</div>
       <Line data={data} />
     </div>
   );
