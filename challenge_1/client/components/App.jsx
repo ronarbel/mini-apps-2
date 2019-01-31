@@ -22,10 +22,11 @@ class App extends React.Component {
       });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    console.log('+++ Searching: ');
-    console.log();
+  handleSubmit(text) {
+    return (event) => {
+      event.preventDefault();
+      console.log(text);
+    };
   }
 
   render() {
