@@ -19,8 +19,9 @@ class App extends React.Component {
   getEvents(text) {
     axios.get(`/events?q=${text}&_limit=${10}`)
       .then((events) => {
-        console.log(events.data);
-        this.setState({ events: events.data });
+        const totalCount = events.headers['x-total-count'];
+        const pageCount = totalCount / 10;
+        this.setState({ events: events.data, pageCount });
       })
       .catch((err) => { console.log(err); });
   }
