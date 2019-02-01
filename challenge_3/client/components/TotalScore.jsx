@@ -9,7 +9,7 @@ const TotalScore = ({ totalScore }) => (
 );
 
 TotalScore.propTypes = {
-  totalScore: PropTypes.instanceOf(Number).isRequired,
+  totalScore: PropTypes.number.isRequired,
 };
 
 export default TotalScore;
