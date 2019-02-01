@@ -1,6 +1,7 @@
 /* eslint-env browser */
 import React from 'react';
 import BowlInput from './BowlInput.jsx';
+import ScoreTable from './ScoreTable.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -43,8 +44,10 @@ class App extends React.Component {
   /* eslint-enable */
 
   render() {
+    const { throws } = this.state;
     return (
       <div>
+        <ScoreTable throws={throws} />
         <BowlInput handleInput={this.handleInput} />
       </div>
     );
