@@ -5,7 +5,8 @@ import PropTypes from 'prop-types';
 const BowlInput = ({ handleInput }) => (
   <div className="bowl-input">
     <NumPad.Number
-      placeholder={'Select Bowl Score'}
+      placeholder="Select Bowl Score"
+      position="flex-start"
       onChange={value => handleInput(value)}
       decimal={false}
       negative={false}
