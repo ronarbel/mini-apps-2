@@ -35,18 +35,32 @@ const ScoreTable = ({ throws }) => {
     }
   });
 
-  console.log(frameScores);
+  const framesData = [];
+  frameScores.forEach((value, i) => {
+    // gather cumulative score so far to display
+    let frameScoreDisplayTotal = 0;
+    let frameScoreIndex = i;
+    while (frameScoreIndex >= 0) {
+      frameScoreDisplayTotal += frameScores[frameScoreIndex];
+      frameScoreIndex -= 1;
+    }
 
-  // const frames = throws.map((value, i) => {
+    framesData.push({
+      throw1: throws[i * 2],
+      throw2: throws[(i * 2) + 1],
+      frameScoreDisplayTotal,
+    });
+  });
 
-  //   <Frame />
-  // });
+  const frames = framesData.map((frameData, i) => (
+    <Frame frameData={frameData} key={i} />
+  ));
 
   const totalScore = frameScores.reduce((acc, val) => acc + val, 0);
 
   return (
     <div className="score-table">
-      {/* {frames} */}
+      {frames}
       <TotalScore totalScore={totalScore} />
     </div>
   );
