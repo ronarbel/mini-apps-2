@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Frame = ({ frameData }) => {
-  const { throw1, throw2, frameScoreDisplayTotal } = frameData;
+  const { throw1, throw2, frameCumulativeScore } = frameData;
   return (
     <div className="frame">
-      <div className="throw-1">{throw1}</div>
-      <div className="throw-2">{throw2}</div>
-      <div className="frame-score">{frameScoreDisplayTotal}</div>
+      <span className="throw-1">{throw1}</span>
+      <span className="throw-2">{throw2}</span>
+      <div className="frame-score">{frameCumulativeScore}</div>
     </div>
   );
 };

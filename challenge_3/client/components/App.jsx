@@ -13,7 +13,7 @@ class App extends React.Component {
     this.handleInput = this.handleInput.bind(this);
   }
 
-  /* eslint-disable */
+  
   handleInput(value) {
     value = Number(value);
     const { throws } = this.state;
@@ -21,6 +21,7 @@ class App extends React.Component {
     if (value < 0 || value > 10) {
       alert('Must submit value between 0 - 10!');
     } else {
+      // eslint-disable-next-line no-lonely-if
       if (throws.length % 2 === 0) {
         if (value === 10) {
           throws.push(null);
@@ -41,7 +42,6 @@ class App extends React.Component {
       }
     }
   }
-  /* eslint-enable */
 
   render() {
     const { throws } = this.state;
